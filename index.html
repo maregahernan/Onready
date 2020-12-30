@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio</title>
+</head>
+<body>
+
+    <script>
+
+        /* Creo prototipos de los objetos autos y motos */
+
+        function Coches (marca , modelo , puertas , precio){
+            this.marca = marca;
+            this.modelo = modelo;
+            this.puertas = puertas;
+            this.precio = parseFloat(precio)
+        }
+
+        function Motos (marca , modelo , cilindradas , precio){
+            this.marca = marca;
+            this.modelo = modelo;
+            this.cilindradas = cilindradas;
+            this.precio = parseFloat(precio)
+        }
+        
+        /* Creo los 4 objetos */
+
+        let peugeot206 = new Coches ("Peugeot" , "206" , 4 , 200000.00)
+
+        let peugeot208= new Coches ("Peugeot" , "208" , 5 ,250000.00)
+        
+        let hondaTitan = new Motos ("Honda" , "Titan" , "125cc" , 60000.00 )
+
+        let yamahaYBR = new Motos ("Yamaha" , "YBR" , "160cc" , 80500.50 )
+
+        /* Imprimo en consola los objetos */
+
+        console.log("Marca: " + peugeot206.marca + " // Modelo: " + peugeot206.modelo + " // Puertas: " + peugeot206.puertas + " // Precio: $" + peugeot206.precio)
+
+        console.log("Marca: " + hondaTitan.marca + " // Modelo: " + hondaTitan.modelo + " // Cilindrada: " + hondaTitan.cilindradas + " // Precio: $" + hondaTitan.precio)
+        
+        console.log("Marca: " + peugeot208.marca + " // Modelo: " + peugeot208.modelo + " // Puertas: " + peugeot208.puertas + " // Precio: $" + peugeot208.precio)
+
+        console.log("Marca: " + yamahaYBR.marca + " // Modelo: " + yamahaYBR.modelo + " // Cilindrada: " + yamahaYBR.cilindradas + " // Precio: $" + yamahaYBR.precio)
+
+        console.log("=============================")
+
+        /* Creo un objeto de los objetos para poder iterarlos todos juntos */
+
+        let vehiculos = [peugeot206,peugeot208,hondaTitan,yamahaYBR]
+
+        /* Creo variables para pivotear y guardar  */
+        
+        let mayorPrecio = 0
+        let vehiculoMayorPrecioMarca = " ";
+        let vehiculoMayorPrecioModelo = " ";
+        
+        let menorPrecio = 1000000000;
+        let vehiculoMenorPrecioMarca=" ";
+        let vehiculoMenorPrecioModelo=" ";
+
+        
+    
+        for (let i = 0 ; i <= vehiculos.length-1 ; i++){
+
+            if (mayorPrecio < vehiculos[i].precio){
+
+                mayorPrecio = vehiculos[i].precio;
+                vehiculoMayorPrecioMarca = vehiculos[i].marca;
+                vehiculoMayorPrecioModelo = vehiculos[i].modelo
+            }
+         
+            
+            if (menorPrecio > vehiculos[i].precio){
+                menorPrecio = vehiculos[i].precio
+                vehiculoMenorPrecioMarca = vehiculos[i].marca
+                vehiculoMenorPrecioModelo = vehiculos[i].modelo                 
+            }
+            
+        }
+
+        /* Imprimo en consola el vehiculo mas caro y el vehiculo mas barato */
+        
+        console.log("Vehículo más caro: " + vehiculoMayorPrecioMarca + " " + vehiculoMayorPrecioModelo)
+        console.log("Vehícuo más barato: " + vehiculoMenorPrecioMarca + " " + vehiculoMenorPrecioModelo)
+      
+   
+        /* Creo variables para guardar datos del vehiculo que tiene la letra Y en su modelo */
+
+        let autoYMarca = " ";
+        let autoYModelo = " ";
+        let autoYPrecio = " ";
+            
+     
+      for (let i = 0 ; i <= vehiculos.length-1 ; i++){
+        autoYModelo = vehiculos[i].modelo
+         for(let j = 0; j <= autoYModelo.length; j++){
+             if(autoYModelo.charAt(j)=="Y"){
+                 
+                 break;
+             }
+         }
+         autoYMarca = vehiculos[i].marca
+         autoYPrecio = vehiculos[i].precio 
+      }
+
+      /* Imprimo en consola el vehiculo que tiene la letra Y en su modelo */
+      
+     console.log("Vehículo que contiene en el modelo la letra 'Y': " + autoYMarca + " " + autoYModelo + " $" + autoYPrecio)
+     
+     console.log("=============================")
+     
+     console.log("Vehículos ordenados por precio de mayor a menor:")
+
+      /* Creo una funcion que me ordena los objetos de mayor a menor segun su precio */
+     vehiculos.sort(function (a, b) {
+      
+        if (a.precio < b.precio) {
+            return 1;
+        }
+        if (a.precio > b.precio) {
+            return -1;
+        }
+        
+        return 0;
+
+    })
+    /* Uso un for para imprimir la marca y el modelo ordenados por precio */
+     for (let i = 0 ; i <= vehiculos.length-1 ; i++){
+        console.log(vehiculos[i].marca + " " + vehiculos[i].modelo)
+     }
+     
+     
+     
+
+    
+
+
+    </script>
+</body>
+</html>
